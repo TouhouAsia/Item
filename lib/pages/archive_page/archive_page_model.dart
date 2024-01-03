@@ -1,4 +1,5 @@
 import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
 import '/components/archive_card/archive_card_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -13,18 +14,18 @@ class ArchivePageModel extends FlutterFlowModel<ArchivePageWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
-  // Model for ArchiveCard component.
-  late ArchiveCardModel archiveCardModel;
+  // Models for ArchiveCard dynamic component.
+  late FlutterFlowDynamicModels<ArchiveCardModel> archiveCardModels;
 
   /// Initialization and disposal methods.
 
   void initState(BuildContext context) {
-    archiveCardModel = createModel(context, () => ArchiveCardModel());
+    archiveCardModels = FlutterFlowDynamicModels(() => ArchiveCardModel());
   }
 
   void dispose() {
     unfocusNode.dispose();
-    archiveCardModel.dispose();
+    archiveCardModels.dispose();
   }
 
   /// Action blocks are added here.
