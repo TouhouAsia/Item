@@ -34,4 +34,7 @@ class IteminfoRow extends SupabaseDataRow {
 
   String? get owner => getField<String>('owner');
   set owner(String? value) => setField<String>('owner', value);
+
+  bool get isArchive => getField<bool>('is_archive')!;
+  set isArchive(bool value) => setField<bool>('is_archive', value);
 }

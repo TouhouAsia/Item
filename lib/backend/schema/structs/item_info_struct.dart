@@ -13,12 +13,14 @@ class ItemInfoStruct extends BaseStruct {
     double? price,
     DateTime? buyTime,
     String? image,
+    bool? isArchive,
   })  : _id = id,
         _name = name,
         _info = info,
         _price = price,
         _buyTime = buyTime,
-        _image = image;
+        _image = image,
+        _isArchive = isArchive;
 
   // "id" field.
   int? _id;
@@ -58,6 +60,12 @@ class ItemInfoStruct extends BaseStruct {
   set image(String? val) => _image = val;
   bool hasImage() => _image != null;
 
+  // "is_archive" field.
+  bool? _isArchive;
+  bool get isArchive => _isArchive ?? false;
+  set isArchive(bool? val) => _isArchive = val;
+  bool hasIsArchive() => _isArchive != null;
+
   static ItemInfoStruct fromMap(Map<String, dynamic> data) => ItemInfoStruct(
         id: castToType<int>(data['id']),
         name: data['name'] as String?,
@@ -65,6 +73,7 @@ class ItemInfoStruct extends BaseStruct {
         price: castToType<double>(data['price']),
         buyTime: data['buy_time'] as DateTime?,
         image: data['image'] as String?,
+        isArchive: data['is_archive'] as bool?,
       );
 
   static ItemInfoStruct? maybeFromMap(dynamic data) =>
@@ -77,6 +86,7 @@ class ItemInfoStruct extends BaseStruct {
         'price': _price,
         'buy_time': _buyTime,
         'image': _image,
+        'is_archive': _isArchive,
       }.withoutNulls;
 
   @override
@@ -104,6 +114,10 @@ class ItemInfoStruct extends BaseStruct {
         'image': serializeParam(
           _image,
           ParamType.String,
+        ),
+        'is_archive': serializeParam(
+          _isArchive,
+          ParamType.bool,
         ),
       }.withoutNulls;
 
@@ -139,6 +153,11 @@ class ItemInfoStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        isArchive: deserializeParam(
+          data['is_archive'],
+          ParamType.bool,
+          false,
+        ),
       );
 
   @override
@@ -152,12 +171,13 @@ class ItemInfoStruct extends BaseStruct {
         info == other.info &&
         price == other.price &&
         buyTime == other.buyTime &&
-        image == other.image;
+        image == other.image &&
+        isArchive == other.isArchive;
   }
 
   @override
-  int get hashCode =>
-      const ListEquality().hash([id, name, info, price, buyTime, image]);
+  int get hashCode => const ListEquality()
+      .hash([id, name, info, price, buyTime, image, isArchive]);
 }
 
 ItemInfoStruct createItemInfoStruct({
@@ -167,6 +187,7 @@ ItemInfoStruct createItemInfoStruct({
   double? price,
   DateTime? buyTime,
   String? image,
+  bool? isArchive,
 }) =>
     ItemInfoStruct(
       id: id,
@@ -175,4 +196,5 @@ ItemInfoStruct createItemInfoStruct({
       price: price,
       buyTime: buyTime,
       image: image,
+      isArchive: isArchive,
     );
