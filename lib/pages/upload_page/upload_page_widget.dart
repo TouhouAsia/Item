@@ -552,8 +552,8 @@ class _UploadPageWidgetState extends State<UploadPageWidget>
                         await IteminfoTable().insert({
                           'name': _model.textController1.text,
                           'info': _model.textController2.text,
-                          'buy_time': supaSerialize<PostgresTime>(
-                              PostgresTime(_model.datePicked)),
+                          'buy_time':
+                              supaSerialize<DateTime>(_model.datePicked),
                           'price': 1.0,
                           'image': _model.uploadedFileUrl,
                           'owner': FFAppState().hashcode,

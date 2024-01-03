@@ -26,15 +26,21 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   // State field(s) for ChoiceChips widget.
   List<String>? choiceChipsValues;
   FormFieldController<List<String>>? choiceChipsValueController;
+  // Models for ItemCard dynamic component.
+  late FlutterFlowDynamicModels<ItemCardModel> itemCardModels;
 
   /// Initialization and disposal methods.
 
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    itemCardModels = FlutterFlowDynamicModels(() => ItemCardModel());
+  }
 
   void dispose() {
     unfocusNode.dispose();
     textFieldFocusNode?.dispose();
     textController?.dispose();
+
+    itemCardModels.dispose();
   }
 
   /// Action blocks are added here.

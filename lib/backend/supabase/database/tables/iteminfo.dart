@@ -26,9 +26,6 @@ class IteminfoRow extends SupabaseDataRow {
   double? get price => getField<double>('price');
   set price(double? value) => setField<double>('price', value);
 
-  PostgresTime? get buyTime => getField<PostgresTime>('buy_time');
-  set buyTime(PostgresTime? value) => setField<PostgresTime>('buy_time', value);
-
   String? get image => getField<String>('image');
   set image(String? value) => setField<String>('image', value);
 
@@ -37,4 +34,7 @@ class IteminfoRow extends SupabaseDataRow {
 
   bool get isArchive => getField<bool>('is_archive')!;
   set isArchive(bool value) => setField<bool>('is_archive', value);
+
+  DateTime? get buyTime => getField<DateTime>('buy_time');
+  set buyTime(DateTime? value) => setField<DateTime>('buy_time', value);
 }

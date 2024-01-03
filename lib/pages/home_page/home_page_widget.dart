@@ -320,17 +320,25 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       itemBuilder: (context, listViewIndex) {
                         final listViewIteminfoRow =
                             listViewIteminfoRowList[listViewIndex];
-                        return ItemCardWidget(
-                          key: Key(
-                              'Keyads_${listViewIndex}_of_${listViewIteminfoRowList.length}'),
-                          item: ItemInfoStruct(
-                            id: listViewIteminfoRow.id,
-                            name: listViewIteminfoRow.name,
-                            info: listViewIteminfoRow.info,
-                            price: listViewIteminfoRow.price,
-                            buyTime: listViewIteminfoRow.buyTime,
-                            image: listViewIteminfoRow.image,
-                            isArchive: listViewIteminfoRow.isArchive,
+                        return wrapWithModel(
+                          model: _model.itemCardModels.getModel(
+                            listViewIndex.toString(),
+                            listViewIndex,
+                          ),
+                          updateCallback: () => setState(() {}),
+                          child: ItemCardWidget(
+                            key: Key(
+                              'Keyads_${listViewIndex.toString()}',
+                            ),
+                            item: ItemInfoStruct(
+                              id: listViewIteminfoRow.id,
+                              name: listViewIteminfoRow.name,
+                              info: listViewIteminfoRow.info,
+                              price: listViewIteminfoRow.price,
+                              buyTime: listViewIteminfoRow.buyTime,
+                              image: listViewIteminfoRow.image,
+                              isArchive: listViewIteminfoRow.isArchive,
+                            ),
                           ),
                         );
                       },
