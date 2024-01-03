@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -317,12 +318,14 @@ class _UploadPageWidgetState extends State<UploadPageWidget>
                         EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12.0),
-                      child: Image.network(
-                        _model.uploadedFileUrl,
+                      child: CachedNetworkImage(
+                        fadeInDuration: Duration(milliseconds: 500),
+                        fadeOutDuration: Duration(milliseconds: 500),
+                        imageUrl: _model.uploadedFileUrl,
                         width: double.infinity,
                         height: 200.0,
                         fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) =>
+                        errorWidget: (context, error, stackTrace) =>
                             Image.asset(
                           'assets/images/error_image.png',
                           width: double.infinity,
@@ -359,7 +362,7 @@ class _UploadPageWidgetState extends State<UploadPageWidget>
                             final selectedMedia =
                                 await selectMediaWithSourceBottomSheet(
                               context: context,
-                              storageFolderPath: FFAppState().hashcode,
+                              storageFolderPath: 'users/uploads',
                               maxWidth: 1080.00,
                               maxHeight: 720.00,
                               allowPhoto: true,
